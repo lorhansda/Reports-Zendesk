@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SKA REPORTS - Dashboard (v46 - TV Usability)</title>
+    <title>SKA REPORTS - Dashboard (v48 - Auto Audio)</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     
@@ -17,18 +17,18 @@
         * { box-sizing: border-box; }
         body { margin: 0; padding: 0; background: var(--bg-global); color: var(--text-white); font-family: 'Segoe UI', Tahoma, sans-serif; overflow: hidden; height: 100vh; display: flex; flex-direction: column; }
         
-        /* HEADER - Altura fixa para estabilidade */
+        /* HEADER */
         .header-container { background-color: var(--bg-header); height: 6vh; min-height: 50px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); flex-shrink: 0; z-index: 100; }
         .app-title { font-size: clamp(18px, 2.5vh, 24px); font-weight: 800; letter-spacing: 1px; text-transform: uppercase; position: absolute; left: 50%; transform: translateX(-50%); }
         .header-right { display: flex; align-items: center; gap: 15px; font-size: 1.2vh; color: var(--text-dim); }
 
-        /* NAV - Altura ajustavel */
+        /* NAV */
         .nav-bar { background: var(--bg-nav); display: flex; justify-content: center; padding: 0; margin-bottom: 1.5vh; box-shadow: 0 4px 6px rgba(0,0,0,0.1); flex-shrink: 0; }
         .nav-btn { background: transparent; border: none; color: rgba(255,255,255,0.6); padding: 1.5vh 2vw; font-size: clamp(12px, 1.5vh, 16px); cursor: pointer; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 4px solid transparent; transition: all 0.3s; }
         .nav-btn:hover { background: rgba(255,255,255,0.05); color: #fff; }
         .nav-btn.active { color: #fff; background: rgba(255,255,255,0.1); border-bottom-color: var(--card-blue); }
 
-        /* KPI AREA - Altura Responsiva (15% da tela) */
+        /* KPIS */
         .metrics-wrapper { flex-shrink: 0; margin-bottom: 2vh; }
         .metrics-row { display: none; grid-template-columns: repeat(5, 1fr); gap: 1.5vw; padding: 0 1.5vw; }
         .metrics-row.active { display: grid; } 
@@ -45,7 +45,7 @@
         .kpi-value { font-size: clamp(28px, 5vh, 60px); font-weight: 800; line-height: 1; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .kpi-sub { font-size: clamp(9px, 1vh, 12px); margin-top: 0.5vh; opacity: 0.8; }
 
-        /* MAIN CONTENT - Ocupa o resto */
+        /* CONTENT */
         .main-wrapper { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; width: 100%; }
         .content-area { flex-grow: 1; position: relative; overflow: hidden; margin-bottom: 1vh; padding: 0 1.5vw; }
         .tab-pane { display: none; height: 100%; animation: fadeIn 0.4s ease-in-out; }
@@ -65,7 +65,7 @@
         .b-urgent { background: var(--card-pink); color: #fff; }
         .status-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 8px; }
 
-        /* QUALITY TAB */
+        /* QUALITY */
         .quality-container { height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background: var(--bg-container); border-radius: 16px; border: 2px solid var(--card-orange); text-align: center; position: relative; overflow: hidden; }
         .q-stars { font-size: clamp(40px, 8vh, 80px); margin-bottom: 2vh; animation: pulse 2s infinite; }
         .q-comment-box { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; margin-bottom: 3vh; max-width: 85%; font-size: clamp(20px, 3vh, 32px); font-style: italic; line-height: 1.4; font-family: 'Georgia', serif; }
@@ -87,14 +87,13 @@
         .chart-container { position: relative; height: 100%; width: 100%; padding: 30px; display: flex; justify-content: center; align-items: center; }
         .footer { background-color: var(--bg-nav); height: 4vh; min-height: 30px; display: flex; justify-content: center; align-items: center; font-size: 1.5vh; font-weight: bold; color: rgba(255,255,255,0.4); letter-spacing: 2px; text-transform: uppercase; flex-shrink: 0; }
         
-        /* MODAL COM CONTROLES DE TV */
+        /* MODAL */
         #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; display: flex; justify-content: center; align-items: center; }
         .modal-box { background: var(--bg-container); padding: 30px; width: 600px; max-width: 90%; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); max-height: 90vh; overflow-y: auto; }
         .input-group { margin-bottom: 15px; }
         label { display: block; font-size: 14px; color: var(--text-dim); margin-bottom: 5px; }
         input[type="number"] { width: 100%; padding: 12px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px; }
         
-        /* scroll container com botoes */
         .group-control-wrapper { display: flex; flex-direction: column; gap: 5px; background: rgba(0,0,0,0.3); padding: 5px; border-radius: 6px; }
         .scroll-btn { background: rgba(255,255,255,0.1); border: none; color: white; padding: 15px; cursor: pointer; font-size: 20px; border-radius: 4px; transition: background 0.2s; }
         .scroll-btn:hover { background: rgba(255,255,255,0.2); }
@@ -109,7 +108,7 @@
     </style>
 </head>
 <body>
-    <audio id="audio-clap" src="https://www.soundjay.com/human/sounds/applause-05.mp3"></audio>
+    <audio id="audio-clap" src="https://www.soundjay.com/human/sounds/applause-05.mp3" preload="auto"></audio>
 
     <div class="header-container">
         <div></div>
@@ -137,7 +136,6 @@
                 <div class="kpi-card c-pink"><span class="kpi-label">T.M. 1ª Resp</span><span class="kpi-value" style="font-size: clamp(28px,4vh,48px)" id="kpi-reply">--</span><div class="kpi-sub">Horas Úteis</div></div>
                 <div class="kpi-card c-indigo"><span class="kpi-label">T.M. Resolução</span><span class="kpi-value" style="font-size: clamp(28px,4vh,48px)" id="kpi-res">--</span><div class="kpi-sub">Horas Úteis</div></div>
             </div>
-
             <div id="kpi-row-1" class="metrics-row">
                 <div class="kpi-card c-indigo"><span class="kpi-label">Fila Total</span><span class="kpi-value" id="kpi-open-c">0</span><div class="kpi-sub">Backlog</div></div>
                 <div class="kpi-card c-blue"><span class="kpi-label">SLA Mês</span><span class="kpi-value" id="kpi-sla-c">--%</span><div class="kpi-sub">Saúde Geral</div></div>
@@ -145,7 +143,6 @@
                 <div class="kpi-card c-orange"><span class="kpi-label">Fila Estagnada</span><span class="kpi-value" id="kpi-stalled7">0</span><div class="kpi-sub">Sem Interação > 7 Dias</div></div>
                 <div class="kpi-card c-teal"><span class="kpi-label">Idade Média</span><span class="kpi-value" style="font-size: clamp(28px,4vh,48px)" id="kpi-avg-age">--</span><div class="kpi-sub">Dos Antigos (>30d)</div></div>
             </div>
-
             <div id="kpi-row-2" class="metrics-row">
                 <div class="kpi-card c-blue"><span class="kpi-label">Pesquisas Enviadas</span><span class="kpi-value" id="kpi-surveys-sent-r">0</span><div class="kpi-sub">Mês Vigente</div></div>
                 <div class="kpi-card c-pink"><span class="kpi-label">Taxa Resposta</span><span class="kpi-value" id="kpi-resp-rate-r">--%</span><div class="kpi-sub">Adesão</div></div>
@@ -153,7 +150,6 @@
                 <div class="kpi-card c-indigo"><span class="kpi-label">% Avaliados</span><span class="kpi-value" id="kpi-perc-rated">--%</span><div class="kpi-sub">Sobre Resolvidos</div></div>
                 <div class="kpi-card c-orange"><span class="kpi-label">CSAT 30d</span><span class="kpi-value" id="kpi-csat-r">--%</span><div class="kpi-sub">Qualidade</div></div>
             </div>
-
             <div id="kpi-row-shared" class="metrics-row">
                  <div class="kpi-card c-blue"><span class="kpi-label">Pesquisas Enviadas</span><span class="kpi-value" id="kpi-surveys-sent">0</span><div class="kpi-sub">Mês Vigente</div></div>
                  <div class="kpi-card c-pink"><span class="kpi-label">Taxa Resposta</span><span class="kpi-value" id="kpi-resp-rate">--%</span><div class="kpi-sub">Adesão</div></div>
@@ -240,14 +236,26 @@
         let auditData = { solved: [] };
 
         window.onload = async () => { 
-            loadSettings(); await loadGroupsFromAPI(); 
-            if (localStorage.getItem('ska_groups')) { document.getElementById('modal').style.display = 'none'; initSystem(); } 
-            else { document.getElementById('modal').style.display = 'flex'; }
+            loadSettings(); 
+            await loadGroupsFromAPI(); 
+            
+            // Inicia automaticamente
+            if (localStorage.getItem('ska_groups')) { 
+                document.getElementById('modal').style.display = 'none'; 
+                initSystem(); 
+            } else { 
+                document.getElementById('modal').style.display = 'flex'; 
+            }
+
+            // Tenta desbloquear o audio silenciosamente ao apertar qualquer botao do controle
+            document.body.addEventListener('keydown', () => {
+                const audio = document.getElementById('audio-clap');
+                if(audio.paused) { audio.play().catch(()=>{}); audio.pause(); }
+            }, {once:true});
         };
         
         function openConfig() { document.getElementById('modal').style.display = 'flex'; }
         
-        // --- NOVA FUNÇÃO DE SCROLL PARA TV ---
         function scrollGroups(amount) {
             const el = document.getElementById('group-container');
             el.scrollBy({ top: amount, behavior: 'smooth' });
@@ -551,15 +559,6 @@
                 return `<div class="agent-card ${i===0?'rank-1':''}"><div class="a-pos">${i===0?'👑':(i+1)+'º'}</div><img src="${avatar}" class="a-avatar"><div class="a-info"><div class="a-name">${name}</div><div class="a-badge">${label}</div></div><div class="a-score-box">${item.count}</div></div>`; 
             }).join('');
         }
-
-        window.auditarAgente = function(nome) {
-            const result = auditData.solved.filter(t => cache.users[t.assignee_id]?.name.toLowerCase().includes(nome.toLowerCase()));
-            console.log(`=== AUDITORIA DE: ${nome} ===`);
-            console.log(`Total Resolvidos no Mês: ${result.length}`);
-            const avaliados = result.filter(t => t.is_rated);
-            console.log(`Total Avaliados: ${avaliados.length}`);
-            console.table(result.map(t => ({ ID: t.id, Assunto: t.subject, Data: t.updated_at, Avaliado: t.is_rated ? 'SIM' : 'NÃO' })));
-        };
 
         function calcBusinessMinutes(start, end) { if (start >= end) return 0; let minutes = 0; let current = new Date(start); const finish = new Date(end); while (current < finish) { const day = current.getDay(); if (day === 0 || day === 6) { current.setHours(0,0,0,0); current.setDate(current.getDate() + 1); continue; } const workStart = new Date(current); workStart.setHours(8,0,0,0); const workEnd = new Date(current); workEnd.setHours(18,0,0,0); if (current >= workEnd) { current.setHours(0,0,0,0); current.setDate(current.getDate() + 1); continue; } if (current < workStart) current = workStart; let chunkEnd = (finish < workEnd) ? finish : workEnd; if (chunkEnd > current) minutes += (chunkEnd - current) / 60000; current = chunkEnd; if (current.getTime() === workEnd.getTime()) { current.setDate(current.getDate() + 1); current.setHours(0,0,0,0); } } return minutes; }
         function formatPreciseTime(ms, short = false) { const totalMinutes = Math.floor(ms / 60000); const h = Math.floor(totalMinutes / 60); const m = totalMinutes % 60; return h < 1 ? (m === 0 ? "< 1m" : `${m}m`) : `${h}h ${m}m`; }
